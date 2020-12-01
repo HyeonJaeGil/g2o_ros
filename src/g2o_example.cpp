@@ -3,8 +3,19 @@
 #include "g2o/core/sparse_optimizer.h"
 #include "g2o/core/block_solver.h"
 #include "g2o/solvers/dense/linear_solver_dense.h"
- #include "g2o/solvers/csparse/linear_solver_csparse.h"
- #include "g2o/solvers/cholmod/linear_solver_cholmod.h"
+// #include "g2o/solvers/csparse/linear_solver_csparse.h"
+// #include "g2o/solvers/cholmod/linear_solver_cholmod.h"
+
+//위 줄 주석 안하면 위와 같은 error가 발생함
+// In file included from /opt/ros/melodic/include/g2o/solvers/csparse/linear_solver_csparse.h:30:0,
+//                  from /home/hyunjae/test_ws/personal_ws/src/g2o_ros/src/g2o_example.cpp:6:
+// /opt/ros/melodic/include/g2o/solvers/csparse/csparse_helper.h:23:10: fatal error: cs.h: No such file or directory
+//  #include <cs.h>
+// 또는 
+// In file included from /home/hyunjae/test_ws/personal_ws/src/g2o_ros/src/g2o_example.cpp:7:0:
+// /opt/ros/melodic/include/g2o/solvers/cholmod/linear_solver_cholmod.h:36:10: fatal error: cholmod.h: No such file or directory
+//  #include <cholmod.h>
+
 #include "g2o/core/optimization_algorithm_levenberg.h"
  #include "g2o/core/optimization_algorithm_gauss_newton.h"
 #include "g2o/core/factory.h"
@@ -128,12 +139,12 @@ int main()
         optimizer->initializeOptimization();
 
         std::string filename;
-        filename = std::string(PRJ_PATH) + "/../igdata/before_opt.g2o";
+        filename = std::string("~/home/hyunjae/test_ws/personal_ws/src/g2o_ros") + "/../igdata/before_opt.g2o";
         optimizer->save(filename.c_str());
 
         optimizer->optimize(100);
 
-        filename = std::string(PRJ_PATH) + "/../igdata/after_opt.g2o";
+        filename = std::string("~/home/hyunjae/test_ws/personal_ws/src/g2o_ros") + "/../igdata/after_opt.g2o";
         optimizer->save(filename.c_str());
     }
 

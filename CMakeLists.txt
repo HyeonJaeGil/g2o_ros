@@ -46,7 +46,8 @@ catkin_package(
 include_directories(
   ${EIGEN3_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
-  ${G2O_INCLUDE_DIRS}
+  ${CSPARSE_INCLUDE_DIRS}
+  # ${G2O_INCLUDE_DIRS}
   )
 
 set(G2O_LIBS
@@ -60,7 +61,7 @@ set(G2O_LIBS
 
 add_executable(g2o_example src/g2o_example.cpp)
 
-target_link_libraries(carrier_g2o
+target_link_libraries(g2o_example
   ${catkin_LIBRARIES}
   ${EIGEN3_LIBS}
   ${G2O_LIBS}
